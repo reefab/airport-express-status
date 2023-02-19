@@ -25,5 +25,5 @@ class APIHandler(BaseHTTPRequestHandler):
         data = plistlib.loads(content)
         return data['statusFlags']> 2000
 
-httpd = HTTPServer(('localhost', 8000), APIHandler)
+httpd = HTTPServer(('0.0.0.0', 8000), APIHandler)
 httpd.serve_forever()
