@@ -6,7 +6,7 @@ No external dependencies.
 
 ## Why does this even exists
 
-I needed a way to find out if my Airport Express was receiving Airplay so I could automatically turn on my receiver and switch to it's toslink input.
+I needed a way to find out if my Airport Express was receiving Airplay so I could automatically turn on my receiver and switch to its toslink input.
 
 The Airport Express do have a HTTP API but it speaks [Plist](https://en.wikipedia.org/wiki/Property_list), a binary format that's not readily readable for most software.
 
