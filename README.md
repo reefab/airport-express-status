@@ -4,14 +4,22 @@ Trivial Python Rest API server that does one thing: give it the hostname/ip of a
 
 No external dependencies.
 
+## Why does this even exists
+
+I needed a way to find out if my Airport Express was receiving Airplay so I could automatically turn on my receiver and switch to it's toslink input.
+
+The Airport Express do have a HTTP API but it speaks [Plist](https://en.wikipedia.org/wiki/Property_list), a binary format that's not readily readable for most software.
+
+Hence this little piece of server that requests the status of the Airport Express, extracts and decode the Airplay status and reports it back in JSON.
+
 ## Usage
 
 ```shell
-docker run -p 8000:8000 reefab/airport-express-status:latest
+$ docker run -p 8000:8000 reefab/airport-express-status:latest
 ```
 
 ```shell
-curl localhost:8000/airport.home.arpa
+$ curl localhost:8000/airport.home.arpa
 ```
 
 ```json
@@ -20,7 +28,7 @@ curl localhost:8000/airport.home.arpa
 
 ## Home Assistant
 
-Create a binary_sensor.
+Create a binary sensor.
 
 ```yaml
 binary_sensor:
