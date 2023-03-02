@@ -19,7 +19,7 @@ $ docker run -p 8000:8000 reefab/airport-express-status:latest
 ```
 
 ```shell
-$ curl localhost:8000/airport.home.arpa
+$ curl localhost:8000/<airport express hostname or IP>
 ```
 
 ```json
