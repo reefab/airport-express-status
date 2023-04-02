@@ -18,7 +18,7 @@ class APIHandler(BaseHTTPRequestHandler):
     def get_status(self, host):
         httprequest = Request(f"http://{host}:7000/info")
 
-        with urlopen(httprequest) as response:
+        with urlopen(httprequest, timeout=60) as response:
             content = response.read()
 
         data = plistlib.loads(content)
