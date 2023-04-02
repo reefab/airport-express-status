@@ -35,7 +35,7 @@ binary_sensor:
   - platform: rest
     name: Airport Express Airplay Status
     resource: http://localhost:8000/airport.home.arpa
-    scan_interval: 5
+    scan_interval: 30
     value_template: "{{ value_json.Status }}"
 ```
 
