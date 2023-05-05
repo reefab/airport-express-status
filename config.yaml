@@ -1,0 +1,15 @@
+name: "Airport Express Status"
+description: "Airport Express Status"
+version: "1.0.0"
+slug: "hello_world"
+init: false
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
+startup: before
+ports:
+  8000/tcp: 8000
+watchdog: python -c "import urllib.request as r; import json; exit((json.loads(r.urlopen('http://localhost:8000/health').read())['Status']) != 'OK')"
