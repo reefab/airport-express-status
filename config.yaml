@@ -12,4 +12,3 @@ arch:
 startup: before
 ports:
   8000/tcp: 8000
-watchdog: python -c "import urllib.request as r; import json; exit((json.loads(r.urlopen('http://localhost:8000/health').read())['Status']) != 'OK')"
