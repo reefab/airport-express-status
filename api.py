@@ -1,12 +1,15 @@
 import plistlib
 import json
-from urllib.request import urlopen, Request
+from urllib.error import HTTPError, URLError
+from urllib.request import urlopen
 from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
 
 
 class APIHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         host = self.path[1:]
+        
+        print(f"Trying host: {host}")
 
         if host == 'health':
             self.send_response(200)
@@ -20,11 +23,20 @@ class APIHandler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(json.dumps({"Status": status}).encode())
 
-    def get_status(self, host):
-        httprequest = Request(f"http://{host}:7000/info")
+    def get_status(self, host) -> bool:
+        try:
+            with urlopen(f"http://{host}:7000/info", timeout=60) as response:
+                content = response.read()
+        except HTTPError as error:
+            print(error.status, error.reason)
+            return False
+        except URLError as error:
+            print(error.reason)
+            return False
+        except TimeoutError:
+            print("Request timed out")
+            return False
 
-        with urlopen(httprequest, timeout=60) as response:
-            content = response.read()
 
         data = plistlib.loads(content)
         return data["statusFlags"] > 2000

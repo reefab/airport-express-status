@@ -1,7 +1,7 @@
 name: "Airport Express Status"
 description: "Airport Express Status"
 version: "1.0.0"
-slug: "hello_world"
+slug: "airport_express_status"
 init: false
 arch:
   - aarch64
@@ -9,6 +9,6 @@ arch:
   - armhf
   - armv7
   - i386
-startup: before
+startup: after
 ports:
   8000/tcp: 8000

@@ -5,7 +5,7 @@ RUN \
   apk add --no-cache \
     python3
 
-WORKDIR /data
+COPY api.py /
 
 
 # Copy data for add-on
