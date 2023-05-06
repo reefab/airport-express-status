@@ -14,8 +14,16 @@ Hence this little piece of server that requests the status of the Airport Expres
 
 ## Usage
 
+### Home Assistant OS
+Add repository and install.
+
+### Docker
+
 ```shell
-$ docker run -p 8000:8000 reefab/airport-express-status:latest
+$ docker build . --build-arg BUILD_FROM=alpine --no-cache --tag airport-express-status
+
+```shell
+$ docker run -p 8000:8000 airport-express-status python ./api.py
 ```
 
 ```shell
@@ -34,7 +42,7 @@ Create a binary sensor.
 binary_sensor:
   - platform: rest
     name: Airport Express Airplay Status
-    resource: http://localhost:8000/airport.home.arpa
+    resource: http://localhost:8000/airport.home.arpa # localhost for docker
     scan_interval: 30
     value_template: "{{ value_json.Status }}"
 ```
