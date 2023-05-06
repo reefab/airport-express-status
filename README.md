@@ -24,7 +24,7 @@ $ docker build . --build-arg BUILD_FROM=alpine --no-cache --tag airport-express-
 ```
 
 ```shell
-$ docker run -p 8000:8000 airport-express-status python ./api.py
+$ docker run -p 8000:8000 airport-express-status python3 ./api.py
 ```
 
 ```shell
@@ -32,7 +32,7 @@ $ curl localhost:8000/<airport express hostname or IP>
 ```
 
 ```json
-{"Status": true}
+{"Status": true, "StatusCode": 200}
 ```
 
 ## Home Assistant
