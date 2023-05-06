@@ -21,6 +21,7 @@ Add repository and install.
 
 ```shell
 $ docker build . --build-arg BUILD_FROM=alpine --no-cache --tag airport-express-status
+```
 
 ```shell
 $ docker run -p 8000:8000 airport-express-status python ./api.py
@@ -42,7 +43,7 @@ Create a binary sensor.
 binary_sensor:
   - platform: rest
     name: Airport Express Airplay Status
-    resource: http://localhost:8000/airport.home.arpa # localhost for docker
+    resource: http://localhost:8000/airport.home.arpa # or http://airport-express-status:8000/airport.home.arpa  for home assistant OS
     scan_interval: 30
     value_template: "{{ value_json.Status }}"
 ```
