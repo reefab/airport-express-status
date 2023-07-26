@@ -1,5 +1,15 @@
-FROM python:3.9-alpine
-ADD api.py .
-EXPOSE 8000
-CMD ["python", "./api.py"]
-HEALTHCHECK CMD  python -c "import urllib.request as r; import json; exit((json.loads(r.urlopen('http://localhost:8000/health').read())['Status']) != 'OK')"
+ARG BUILD_FROM
+FROM $BUILD_FROM
+
+RUN \
+  apk add --no-cache \
+    python3
+
+COPY api.py /
+
+
+# Copy data for add-on
+COPY run.sh /
+RUN chmod a+x /run.sh
+
+CMD [ "/run.sh" ]

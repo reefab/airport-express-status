@@ -1,0 +1,14 @@
+name: "Airport Express Status"
+description: "Airport Express Status"
+version: "1.0.0"
+slug: "airport_express_status"
+init: false
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
+startup: after
+ports:
+  8000/tcp: 8000
